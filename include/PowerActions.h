@@ -1,0 +1,9 @@
+#pragma once
+
+enum class View {
+  MAIN_MENU,
+  CONFIRM_SHUTDOWN,
+  CONFIRM_REBOOT,
+  CONFIRM_SUSPEND,
+  CONFIRM_HIBERNATE
+};

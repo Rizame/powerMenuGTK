@@ -15,7 +15,7 @@ PowerMenu::PowerMenu()
 
   auto css = Gtk::CssProvider::create();
   try {
-    css->load_from_path("src/styles.css");
+    css->load_from_path("/usr/local/share/powerGtk/styles.css");
     Gtk::StyleContext::add_provider_for_display(
         Gdk::Display::get_default(), css,
         GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
@@ -33,8 +33,8 @@ PowerMenu::PowerMenu()
     btn->set_child(*icon);
     btn->set_margin(10);
     btn->add_css_class("power-button");
-    btn->signal_clicked().connect(
-        sigc::bind(sigc::mem_fun(*this, &PowerMenu::on_button_clicked)));
+    btn->signal_clicked().connect(sigc::bind(
+        sigc::mem_fun(*this, &PowerMenu::on_button_clicked), powerActions[i]));
 
     main_container->append(*btn);
   }
@@ -47,9 +47,8 @@ PowerMenu::PowerMenu()
 
 PowerMenu::~PowerMenu() {}
 
-void PowerMenu::on_button_clicked() {
-  std::cout << "Opening a confirmation window\n";
-  auto popup = Gtk::make_managed<ConfirmDialog>(*this);
+void PowerMenu::on_button_clicked(View viewMode) {
+  auto popup = Gtk::make_managed<ConfirmDialog>(*this, viewMode);
   popup->set_modal(true);
   popup->set_transient_for(*this);
   popup->show();

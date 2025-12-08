@@ -1,4 +1,4 @@
-project('xdd', 'cpp',
+project('powerGtk', 'cpp',
   version: '0.1',
   default_options: ['cpp_std=c++17'])
 
@@ -13,7 +13,7 @@ sources = files(
   'main.cpp',
 )
 
-executable('xdd', sources,
+executable('powerGtk', sources,
   dependencies: gtkmm_dep,
   include_directories: include_dir)  # <-- Add this
 

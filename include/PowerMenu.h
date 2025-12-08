@@ -1,5 +1,6 @@
 #pragma once
 
+#include <PowerActions.h>
 #include <gtkmm/box.h>
 #include <gtkmm/button.h>
 #include <gtkmm/window.h>
@@ -11,13 +12,7 @@ public:
 
 protected:
   Gtk::Box *main_container;
-  enum class View {
-    MAIN_MENU,
-    CONFIRM_SHUTDOWN,
-    CONFIRM_REBOOT,
-    CONFIRM_SUSPEND,
-    CONFIRM_HIBERNATE
-  };
+
   std::array<const char *, 4> white_icons = {
       "/home/risame/study/cpp/powerMenuGTK/images/w_poweroff.png",
       "/home/risame/study/cpp/powerMenuGTK/images/w_reboot.png",
@@ -35,5 +30,5 @@ protected:
       View::CONFIRM_HIBERNATE};
 
   View current_view;
-  void on_button_clicked();
+  void on_button_clicked(View viewMode);
 };
